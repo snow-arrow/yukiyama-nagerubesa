@@ -269,21 +269,43 @@ section > .wrap{max-width:900px;margin:0 auto}
 
 /* LINE友だち案内 */
 .line-callout{
-  margin-top:18px;padding:16px 18px;border-radius:12px;
+  margin-top:18px;padding:18px;border-radius:12px;
   background:linear-gradient(135deg, rgba(6,199,85,.10), rgba(6,199,85,.04));
   border:1px solid rgba(6,199,85,.35);
-  display:flex;gap:14px;align-items:flex-start;
+  display:grid;grid-template-columns:46px minmax(0,1fr) auto;gap:16px;align-items:flex-start;
+}
+@media (max-width:620px){
+  .line-callout{grid-template-columns:46px 1fr;gap:12px}
+  .line-callout .line-qr{grid-column:1/-1;justify-self:center}
 }
 .line-badge{
-  flex:0 0 46px;height:46px;border-radius:10px;
+  width:46px;height:46px;border-radius:10px;
   background:#06C755;color:#fff;
   font-family:var(--font-display);font-weight:900;font-size:13px;
   display:grid;place-items:center;letter-spacing:.04em;
   box-shadow:0 6px 14px -6px rgba(6,199,85,.6);
 }
-.line-text{display:flex;flex-direction:column;gap:4px;min-width:0}
-.line-text strong{color:var(--ink);font-size:14.5px;line-height:1.6}
-.line-text .line-sub{color:var(--mid);font-size:12px}
+.line-info{display:flex;flex-direction:column;gap:8px;min-width:0}
+.line-info strong{color:var(--ink);font-size:14.5px;line-height:1.6}
+.line-contact{font-size:13.5px;color:var(--ink-2)}
+.line-contact a{color:#06892C;font-weight:700;text-decoration:none}
+.line-contact a:hover{text-decoration:underline}
+:root[data-theme="dark"] .line-contact a,
+:root:not([data-theme="light"]) .line-contact a{color:#4FD17E}
+.line-sub{color:var(--mid);font-size:12px}
+.line-qr{margin:0;display:flex;flex-direction:column;align-items:center;gap:6px}
+.line-qr-box{
+  width:112px;height:112px;background:#fff;padding:8px;border-radius:8px;
+  border:1px solid rgba(6,199,85,.35);position:relative;overflow:hidden;
+}
+.line-qr-box svg{width:100%;height:100%;display:block;opacity:.35}
+.line-qr-box::after{
+  content:"準備中";position:absolute;left:0;right:0;top:50%;transform:translateY(-50%);
+  text-align:center;font-weight:900;font-size:13px;color:#06892C;letter-spacing:.08em;
+  background:rgba(255,255,255,.92);padding:6px 0;
+  border-top:1px solid rgba(6,199,85,.25);border-bottom:1px solid rgba(6,199,85,.25);
+}
+.line-qr figcaption{font-size:11px;color:var(--mid);text-align:center;font-weight:700}
 
 /* ===== Schedule ===== */
 .sched-wrap{overflow-x:auto;margin-top:16px;border-radius:12px;border:1px solid var(--line);background:var(--snow-2)}
@@ -630,10 +652,17 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
         <!-- LINE友だち登録のご案内 -->
         <div class="line-callout">
           <div class="line-badge">LINE</div>
-          <div class="line-text">
+          <div class="line-info">
             <strong>LINE公式アカウントにお友だち登録いただくと、作業前・作業後の写真をお送りします。</strong>
-            <span class="line-sub">※ LINEアカウントは準備中。開設しましたらこちらでご案内します。</span>
+            <div class="line-contact">
+              お問い合わせ：<a href="tel:0116000375">011-600-0375</a>　／　携帯 <a href="tel:08021027788">080-2102-7788</a>
+            </div>
+            <span class="line-sub">※ 右のQRコードは準備中です。LINE公式アカウント開設次第、こちらから友だち追加できるようになります。</span>
           </div>
+          <figure class="line-qr">
+            <div class="line-qr-box" id="lineQrBox" aria-label="LINE友だち追加QR（準備中）"></div>
+            <figcaption>LINE友だち追加</figcaption>
+          </figure>
         </div>
       </div>
     </div>
@@ -937,9 +966,30 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
         return (x+y)%2===0 ? '<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="#000"/>' : '';
       }).join('')+'</svg>';
   }
+  // LINE QRプレースホルダー(QRっぽい疑似パターン+コーナー)
+  function drawLineQrPh(){
+    var box=document.getElementById('lineQrBox'); if(!box) return;
+    var N=21, rects=[];
+    // 3つのファインダーパターン（角）
+    function finder(x,y){
+      rects.push('<rect x="'+x+'" y="'+y+'" width="7" height="7" fill="#000"/>');
+      rects.push('<rect x="'+(x+1)+'" y="'+(y+1)+'" width="5" height="5" fill="#fff"/>');
+      rects.push('<rect x="'+(x+2)+'" y="'+(y+2)+'" width="3" height="3" fill="#000"/>');
+    }
+    finder(0,0); finder(14,0); finder(0,14);
+    // 中間のデータ部分（決定的なパターン）
+    for(var y=0; y<N; y++){
+      for(var x=0; x<N; x++){
+        var inTL=(x<8&&y<8), inTR=(x>=13&&y<8), inBL=(x<8&&y>=13);
+        if(inTL||inTR||inBL) continue;
+        if(((x*7+y*13)%5)<2) rects.push('<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="#000"/>');
+      }
+    }
+    box.innerHTML='<svg viewBox="0 0 '+N+' '+N+'" xmlns="http://www.w3.org/2000/svg">'+rects.join('')+'</svg>';
+  }
   if(document.readyState==='loading'){
-    document.addEventListener('DOMContentLoaded',drawFallback);
-  }else{ drawFallback(); }
+    document.addEventListener('DOMContentLoaded',function(){ drawFallback(); drawLineQrPh(); });
+  }else{ drawFallback(); drawLineQrPh(); }
 })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js" onload="(function(){var b=document.getElementById('qrbox');if(!b||typeof qrcode==='undefined')return;try{var q=qrcode(0,'M');q.addData('https://example.com/book?sign=A-03');q.make();b.innerHTML=q.createSvgTag({scalable:true});var s=b.querySelector('svg');if(s){s.removeAttribute('width');s.removeAttribute('height')}}catch(e){}})()"></script>
