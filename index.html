@@ -395,6 +395,40 @@ table.sched tbody tr:last-child td,table.sched tbody tr:last-child th{border-bot
 @media (prefers-reduced-motion:reduce){.booking-cta .stores-badge .pulse{animation:none}}
 .booking-cta .cta-note{font-size:13px;color:#9EB8D3;margin-top:10px}
 
+/* LINE予約ブロック */
+.booking-line{
+  background:linear-gradient(135deg, rgba(6,199,85,.10), rgba(6,199,85,.04));
+  border:1px solid rgba(6,199,85,.35);border-radius:18px;padding:28px 28px;margin-top:20px;
+  display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;
+}
+@media (max-width:700px){.booking-line{grid-template-columns:1fr;padding:22px;gap:20px}}
+.booking-line-main{display:flex;gap:16px;align-items:flex-start;min-width:0}
+.booking-line-main .line-badge{flex:0 0 46px}
+.booking-line-text h3{color:var(--ink);font-size:clamp(20px,3vw,26px);margin-bottom:8px}
+.booking-line-text p{color:var(--ink-2);font-size:14.5px;line-height:1.75;margin-bottom:6px}
+.booking-line-text .cta-note{color:var(--mid);font-size:12.5px;margin-top:6px}
+.booking-line-qr{margin:0;display:flex;flex-direction:column;align-items:center;gap:6px}
+@media (max-width:700px){.booking-line-qr{justify-self:center}}
+.booking-line-qr figcaption{font-size:11px;color:var(--mid);font-weight:700}
+
+/* 電話フォールバック（小さい） */
+.phone-fallback{
+  margin-top:18px;padding:14px 18px;border-radius:10px;
+  background:transparent;border:1px dashed var(--line);
+  display:flex;gap:12px;align-items:flex-start;
+  font-size:13px;color:var(--mid);line-height:1.7;
+}
+.phone-fallback-ico{
+  flex:0 0 28px;height:28px;border-radius:50%;background:var(--ice);
+  color:var(--ink);display:grid;place-items:center;font-size:14px;
+}
+:root[data-theme="dark"] .phone-fallback-ico,
+:root:not([data-theme="light"]) .phone-fallback-ico{background:var(--line);color:var(--ink)}
+.phone-fallback-text{min-width:0}
+.phone-fallback-nums{display:block;margin-top:4px;font-variant-numeric:tabular-nums}
+.phone-fallback-nums a{color:var(--ink-2);font-weight:700;text-decoration:none}
+.phone-fallback-nums a:hover{text-decoration:underline}
+
 /* ===== FAQ ===== */
 details.faq{
   border:1px solid var(--line);border-radius:10px;background:var(--snow-2);padding:16px 20px;margin-bottom:10px;
@@ -451,11 +485,11 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
         <span class="note">※ 往復・積込・運搬・処理まで込み(税込)</span>
       </div>
       <div class="hero-cta">
-        <a class="btn btn-primary btn-large" href="tel:0116000375">☎ 今すぐ電話で予約　011-600-0375</a>
-        <a class="btn btn-ghost" href="#area">エリアを見る</a>
+        <a class="btn btn-primary btn-large" href="#booking">STORESで予約する →</a>
+        <a class="btn btn-ghost" href="#booking">LINEで予約</a>
       </div>
       <p style="margin-top:14px;font-size:13px;color:#9EB8D3">
-        受付時間 8:00〜20:00　／　携帯 <a href="tel:08021027788" style="color:#F4A378">080-2102-7788</a>　／　STORES予約ページは準備中
+        予約サイト（STORES）とLINE公式アカウントで受付。エリアを見る → <a href="#area" style="color:#F4A378">配達エリア</a>
       </p>
     </div>
   </section>
@@ -785,35 +819,13 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
   <section id="booking">
     <div class="wrap">
       <div class="kicker">ご予約・お支払い</div>
-      <h2 class="h2">まずはお電話で。STORES予約も順次対応。</h2>
+      <h2 class="h2">ご予約は、STORES予約 または LINE で。</h2>
       <p class="lead">
-        サービス開始時点では<strong>お電話でのご予約</strong>がスムーズです。
-        住所・日時・雪山の大きさをお伺いして、空き枠をご案内します。
-        STORES予約・事前決済は準備が整い次第こちらでお知らせします。
+        ご予約は <strong>STORES予約</strong>、または <strong>LINE公式アカウント</strong> からお気軽にどうぞ。
+        空き枠の確認・日時選択・決済まで、スマホから数分で完了します。
       </p>
 
-      <!-- 電話予約ブロック -->
-      <div style="background:linear-gradient(135deg, var(--accent-deep), var(--accent)); color:#fff; border-radius:18px; padding:32px 28px; margin-top:16px; box-shadow:0 20px 50px -22px rgba(185,82,30,.55);">
-        <div style="font-size:12px; letter-spacing:.2em; font-weight:700; opacity:.85">PHONE BOOKING</div>
-        <h3 style="color:#fff; font-size:clamp(22px,3.4vw,30px); margin-top:6px">お電話で、すぐ予約。</h3>
-        <p style="color:#FFE6D6; font-size:15px; line-height:1.7; margin-top:8px">
-          ご連絡時にお伺いするのは3つだけ ― <strong>ご住所／ご希望日時／雪山のおおよその大きさ</strong>。
-          法人・店舗様の請求書払いもご相談ください。
-        </p>
-        <div style="margin-top:22px; display:flex; flex-wrap:wrap; gap:12px; align-items:center">
-          <a href="tel:0116000375" style="display:inline-flex; align-items:center; gap:10px; background:#fff; color:var(--accent-deep); padding:18px 26px; border-radius:12px; font-weight:900; font-size:18px; text-decoration:none; box-shadow:0 10px 24px -10px rgba(0,0,0,.35)">
-            ☎ <span class="num">011-600-0375</span>
-          </a>
-          <a href="tel:08021027788" style="display:inline-flex; align-items:center; gap:10px; background:rgba(255,255,255,.14); color:#fff; padding:18px 24px; border-radius:12px; font-weight:700; font-size:16px; text-decoration:none; border:1px solid rgba(255,255,255,.3)">
-            携帯 <span class="num">080-2102-7788</span>
-          </a>
-        </div>
-        <div style="margin-top:14px; font-size:13px; color:#FFE6D6">
-          受付時間 8:00〜20:00　／　運営：株式会社アロー
-        </div>
-      </div>
-
-      <!-- STORES予約（準備中） -->
+      <!-- STORES予約（メイン） -->
       <div class="booking-cta" style="margin-top:20px">
         <div>
           <span class="stores-badge"><span class="pulse"></span>POWERED BY STORES 予約</span>
@@ -825,6 +837,34 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
         <a class="btn btn-primary btn-large" href="#" id="storesLink" aria-disabled="true">
           STORESで予約する →
         </a>
+      </div>
+
+      <!-- LINE予約 -->
+      <div class="booking-line">
+        <div class="booking-line-main">
+          <div class="line-badge">LINE</div>
+          <div class="booking-line-text">
+            <h3>LINEで予約・ご相談。</h3>
+            <p>LINE公式アカウントにお友だち登録いただくと、トークから予約・ご相談ができます。
+              作業前・作業後の写真もLINEでお送りします。</p>
+            <p class="cta-note">※ LINE公式アカウント開設次第、こちらから友だち追加できるようになります。</p>
+          </div>
+        </div>
+        <figure class="booking-line-qr">
+          <div class="line-qr-box" id="lineQrBox2" aria-label="LINE友だち追加QR（準備中）"></div>
+          <figcaption>LINE友だち追加</figcaption>
+        </figure>
+      </div>
+
+      <!-- 電話（やむを得ない場合用） -->
+      <div class="phone-fallback">
+        <span class="phone-fallback-ico">☎</span>
+        <div class="phone-fallback-text">
+          エリア外のご相談・やむを得ずネット予約ができない場合は、お電話でも承ります。
+          <span class="phone-fallback-nums">
+            <a href="tel:0116000375">011-600-0375</a>　／　携帯 <a href="tel:08021027788">080-2102-7788</a>　（8:00〜20:00）
+          </span>
+        </div>
       </div>
     </div>
   </section>
@@ -968,16 +1008,14 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
   }
   // LINE QRプレースホルダー(QRっぽい疑似パターン+コーナー)
   function drawLineQrPh(){
-    var box=document.getElementById('lineQrBox'); if(!box) return;
+    var boxes=document.querySelectorAll('#lineQrBox, #lineQrBox2'); if(!boxes.length) return;
     var N=21, rects=[];
-    // 3つのファインダーパターン（角）
     function finder(x,y){
       rects.push('<rect x="'+x+'" y="'+y+'" width="7" height="7" fill="#000"/>');
       rects.push('<rect x="'+(x+1)+'" y="'+(y+1)+'" width="5" height="5" fill="#fff"/>');
       rects.push('<rect x="'+(x+2)+'" y="'+(y+2)+'" width="3" height="3" fill="#000"/>');
     }
     finder(0,0); finder(14,0); finder(0,14);
-    // 中間のデータ部分（決定的なパターン）
     for(var y=0; y<N; y++){
       for(var x=0; x<N; x++){
         var inTL=(x<8&&y<8), inTR=(x>=13&&y<8), inBL=(x<8&&y>=13);
@@ -985,7 +1023,8 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
         if(((x*7+y*13)%5)<2) rects.push('<rect x="'+x+'" y="'+y+'" width="1" height="1" fill="#000"/>');
       }
     }
-    box.innerHTML='<svg viewBox="0 0 '+N+' '+N+'" xmlns="http://www.w3.org/2000/svg">'+rects.join('')+'</svg>';
+    var html='<svg viewBox="0 0 '+N+' '+N+'" xmlns="http://www.w3.org/2000/svg">'+rects.join('')+'</svg>';
+    boxes.forEach(function(b){ b.innerHTML=html; });
   }
   if(document.readyState==='loading'){
     document.addEventListener('DOMContentLoaded',function(){ drawFallback(); drawLineQrPh(); });
