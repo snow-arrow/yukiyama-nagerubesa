@@ -87,6 +87,22 @@ main{max-width:980px;margin:0 auto;padding-block:0 64px}
   color:#CFE0F2;
 }
 .hero-eyebrow .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.hero-tagline{
+  margin-top:22px;
+  font-family:var(--font-display);font-weight:900;
+  color:#fff;line-height:1.2;letter-spacing:-.005em;
+}
+.hero-tagline .main{
+  display:block;font-size:clamp(34px,6vw,54px);
+  background:linear-gradient(90deg,#FFF 0%,#E8743B 70%,#F4A378 100%);
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+}
+.hero-tagline .sub{
+  display:inline-block;margin-top:10px;
+  background:var(--accent);color:#fff;
+  font-size:clamp(14px,2.4vw,18px);font-weight:900;
+  padding:6px 14px;border-radius:6px;letter-spacing:.02em;
+}
 .hero h1{
   font-size:clamp(44px,8vw,80px);
   margin-top:20px;
@@ -339,6 +355,10 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
     <button class="theme-toggle" id="themeBtn" aria-label="テーマ切り替え">LIGHT / DARK</button>
     <div class="hero-inner">
       <span class="hero-eyebrow"><span class="dot"></span>札幌・石狩 エリア限定の雪搬出サービス</span>
+      <div class="hero-tagline">
+        <span class="main">雪山なげるべさ。</span>
+        <span class="sub">雪捨て4tダンプに 1杯 1回 1万円！</span>
+      </div>
       <h1>
         ゆき運び便<span class="sub">YUKI&nbsp;HAKOBI&nbsp;BIN</span>
       </h1>
@@ -732,12 +752,18 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
   <footer>
     <div>
       <div class="brand">ゆき運び便</div>
-      <div>札幌・石狩 エリア限定の雪搬出サービス</div>
+      <div style="margin-top:4px;font-weight:700;color:var(--ink)">運営：株式会社アロー</div>
+      <div style="margin-top:2px">札幌・石狩 エリア限定の雪搬出サービス</div>
     </div>
     <div style="display:flex;flex-direction:column;gap:6px;align-items:flex-start">
-      <div>お問い合わせ: <strong id="emailText" style="color:var(--ink)">snow@arrow-life.net</strong>
+      <div style="font-weight:700;color:var(--ink)">
+        TEL: <a href="tel:0116000375" style="color:var(--accent-deep);text-decoration:none">011-600-0375</a>
+        &nbsp;/&nbsp;
+        携帯: <a href="tel:08021027788" style="color:var(--accent-deep);text-decoration:none">080-2102-7788</a>
+      </div>
+      <div>メール: <strong id="emailText" style="color:var(--ink)">snow@arrow-life.net</strong>
         <button class="copy-btn" id="copyBtn" type="button">コピー</button></div>
-      <div style="font-size:12px">&copy; 2026 ゆき運び便</div>
+      <div style="font-size:12px">&copy; 2026 株式会社アロー / ゆき運び便</div>
     </div>
   </footer>
 </main>
