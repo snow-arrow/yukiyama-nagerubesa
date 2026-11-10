@@ -228,6 +228,21 @@ section > .wrap{max-width:900px;margin:0 auto}
 
 .area-note{margin-top:14px;font-size:12.5px;color:var(--mid);line-height:1.7}
 
+/* ===== Pricing section ===== */
+#pricing{padding:60px 0 20px;border-top:1px solid var(--line)}
+.pricing-wrap{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-top:28px}
+.pricing-card{position:relative;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px 20px;display:flex;flex-direction:column;gap:10px}
+.pricing-card.recommended{border-color:var(--accent);box-shadow:0 0 0 2px rgba(255,107,26,.15)}
+.pricing-tag{position:absolute;top:-10px;left:20px;background:var(--accent);color:#fff;padding:4px 12px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.1em}
+.pricing-title{font-size:18px;font-weight:700;color:var(--ink);line-height:1.3}
+.pricing-title small{font-size:14px;font-weight:600;color:var(--mid)}
+.pricing-desc{font-size:12.5px;color:var(--mid);line-height:1.6;min-height:3.2em}
+.pricing-price{display:flex;align-items:baseline;gap:4px;margin-top:4px}
+.pricing-price .yen{font-family:var(--font-num);font-size:44px;line-height:1;color:var(--accent-deep)}
+.pricing-price .unit{font-size:13px;font-weight:700;color:var(--ink)}
+.pricing-foot{font-size:12px;color:var(--mid);line-height:1.6;border-top:1px dashed var(--line);padding-top:10px;margin-top:auto}
+.pricing-note{margin-top:18px;font-size:12.5px;color:var(--mid);text-align:center}
+
 /* ===== Area 範囲外料金・注意事項 ===== */
 .area-notice{
   margin-top:16px;background:var(--snow-2);border:1px solid var(--line);
@@ -676,10 +691,19 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
       <div class="area-notice warn">
         <h3><span class="icon warn">!</span>ご利用時の注意事項</h3>
         <ul>
-          <li>手作業での除雪には対応しておりません。<strong>ホイールローダー等の機械による作業</strong>となるため、細かな雪が残る場合があります。予めご了承ください。</li>
-          <li>作業当日は、お客様による<strong>現地での立ち会い・ご指示</strong>をいただけると最もスムーズです。立ち会いが難しい場合は、<strong>お電話でのご指示</strong>でも承ります。</li>
-          <li>交通状況・自然災害・ドライバーの体調不良などの事情により、到着時刻の遅れや日程変更をお願いする場合があります。</li>
-          <li>悪天候などで雪捨て場が閉鎖された際は、作業を翌日以降に延期させていただく可能性があります。予めご了承ください。</li>
+          <li>作業当日は、お客様の<strong>立ち会い</strong>または<strong>お電話でのご指示</strong>が必須です。いずれもない場合は作業を見合わせます。</li>
+          <li>雪の中に埋もれた物品（自転車・植木鉢・屋外設備など）が作業中に破損した場合、当社では<strong>責任を負いかねます</strong>。事前の撤去、または位置のお知らせをお願いします。</li>
+          <li>お車・建造物・フェンス等との接触を避けるため、構造物の周囲 <strong>おおむね30cm</strong> は雪を残します。完全除去をご希望の場合は手作業で仕上げてください。</li>
+          <li>作業はホイールローダー等の機械によるものに限り、<strong>スコップ等での手作業には対応しておりません</strong>。細かな雪が残る場合があります。</li>
+          <li>ご予約時間はあくまで<strong>目安</strong>です。交通状況や前のお客様の作業状況により、順番にお伺いします。<strong>30分以上</strong>の大幅な遅れが見込まれる場合は、事前にお電話またはLINEでご連絡いたします。</li>
+          <li>悪天候（吹雪・大雪等）により雪捨て場が閉鎖された場合は、翌日以降への延期をお願いする場合があります。</li>
+          <li>作業の都合上、<strong>早朝・夜間</strong>にお伺いする場合があります。重機の作動音についてはあらかじめご了承ください。</li>
+          <li><strong>屋根の雪下ろし・落雪対応</strong>は行っておりません。地上に積もった雪の搬出のみ承ります。</li>
+          <li>ガス・水道・排水設備・散水栓など<strong>地中設備の位置は事前にお知らせください</strong>。損傷防止のため慎重に作業します。</li>
+          <li>ダンプ・重機が<strong>公道から直接進入できない場所</strong>（私道奥・階段上など）は作業できかねます。</li>
+          <li>作業中は、重機周辺に<strong>ペット・お子様が近づかないよう</strong>ご配慮ください。</li>
+          <li>重機の重量により芝生・植栽・舗装面に<strong>跡が残る場合</strong>があります。</li>
+          <li>1回の作業で搬出可能な雪の量は<strong>4tダンプ1杯分（約6立米）</strong>です。超過分は追加料金または次回対応となります。</li>
           <li>拠点：<strong>新琴似8横雪堆積場</strong>（札幌市北区新川807-1付近）。状況により変更する可能性があります。</li>
         </ul>
 
@@ -818,6 +842,41 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
   </section>
 
   <!-- ========================= 予約 ========================= -->
+  <!-- ========================= 料金 ========================= -->
+  <section id="pricing">
+    <div class="wrap">
+      <div class="kicker">料金</div>
+      <h2 class="h2">予約方法で、料金が決まります。</h2>
+      <p class="lead">
+        STORES予約（<strong>カード／コンビニ現金／Pay-easy／LINE Pay 等</strong>）が基本。
+        当日の現金のやり取りは原則なし。どうしてもという場合のみ、集金代行料で承ります。
+      </p>
+
+      <div class="pricing-wrap">
+        <div class="pricing-card recommended">
+          <div class="pricing-tag">おすすめ</div>
+          <div class="pricing-title">STORES予約</div>
+          <div class="pricing-desc">カード／コンビニ現金／Pay-easy／LINE Pay</div>
+          <div class="pricing-price"><span class="yen num">10,000</span><span class="unit">円（税込）</span></div>
+          <div class="pricing-foot">当日のお支払い対応なし・作業時間に集中できます。</div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-title">お電話予約<br><small>＋STORESコンビニ払い</small></div>
+          <div class="pricing-desc">スマホ・カードなしでもOK。番号発行→お近くのコンビニで現金払い</div>
+          <div class="pricing-price"><span class="yen num">10,000</span><span class="unit">円（税込）</span></div>
+          <div class="pricing-foot">予約確定後、お支払い番号をお伝えします。</div>
+        </div>
+        <div class="pricing-card">
+          <div class="pricing-title">お電話予約<br><small>＋当日現金</small></div>
+          <div class="pricing-desc">コンビニ払いも難しい場合のみ。集金代行料 +¥2,000</div>
+          <div class="pricing-price"><span class="yen num">12,000</span><span class="unit">円（税込）</span></div>
+          <div class="pricing-foot">おつりの用意が難しいため、ぴったりでご用意ください。</div>
+        </div>
+      </div>
+      <p class="pricing-note">※ いずれも 4tダンプ 1杯・往復・積込・運搬・処理まで込み（税込）。4地区外の場合は距離に応じた追加料金が別途かかります。</p>
+    </div>
+  </section>
+
   <section id="booking">
     <div class="wrap">
       <div class="kicker">ご予約・お支払い</div>
@@ -870,7 +929,7 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
           <span class="phone-fallback-nums">
             <a href="tel:0116000375">011-600-0375</a>　／　携帯 <a href="tel:08021027788">080-2102-7788</a>　（8:00〜20:00）
           </span>
-          <span class="phone-fallback-note">※ ご予約の受付はSTORES予約のみとなります。</span>
+          <span class="phone-fallback-note">※ ご予約の基本はSTORES予約です。お電話でもご予約可能ですが、当日現金払いの場合は集金代行料 +¥2,000 を頂戴します（コンビニ現金払いは +0円）。</span>
         </div>
       </div>
     </div>
@@ -915,9 +974,13 @@ footer .brand{font-family:var(--font-display);font-weight:900;color:var(--ink);f
         </details>
         <details class="faq">
           <summary>支払い方法は?</summary>
-          <p>サービス開始時点は<strong>お電話予約での現地現金払い</strong>を基本とします。
-            STORES予約の準備が整い次第、クレジットカード等での事前決済に順次移行します。
-            法人・店舗様で請求書払いをご希望の場合は、ご予約時にお申し付けください。</p>
+          <p><strong>STORES予約での事前決済</strong>を基本とします。STORESではクレジットカード・コンビニ現金払い（セブン・ローソン・ファミマ・セイコーマート）・Pay-easy・LINE Pay等がご利用いただけます。<br>
+            スマホ・カードがなくても、こちらでコンビニ払い用の番号を発行しますので、<strong>近所のコンビニのレジで現金払い</strong>いただけます。お電話予約でも対応可能です。<br>
+            どうしても当日現金でのお支払いをご希望の場合は、<strong>お電話予約・集金代行料として +¥2,000</strong>（計¥12,000・税込）にて承ります。</p>
+        </details>
+        <details class="faq">
+          <summary>スマホがなくても予約できますか?</summary>
+          <p>お電話でご予約いただけます。お支払いは、<strong>近所のコンビニでの現金払い（STORES経由）</strong>が最もスムーズです。こちらで番号をお伝えしますので、レジで支払えば予約確定となります。</p>
         </details>
         <details class="faq">
           <summary>電話予約の受付時間は?</summary>
